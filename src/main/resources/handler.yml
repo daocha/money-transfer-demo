@@ -35,8 +35,10 @@ handlers:
   
   # Business Handlers
   - com.rayli.handler.TransferPostHandler
-  - com.rayli.handler.BalanceGetHandler
-  - com.rayli.handler.DepositPutHandler
+  - com.rayli.handler.AccountGetHandler
+  - com.rayli.handler.DepositPostHandler
+  - com.rayli.handler.WithdrawPostHandler
+  - com.rayli.handler.TransactionGetHandler
 
 
 chains:
@@ -51,14 +53,26 @@ paths:
       - default
       - com.rayli.handler.TransferPostHandler
       
-  - path: '/v1/balance'
+  - path: '/v1/account/{accountId}'
     method: 'GET'
     exec:
       - default
-      - com.rayli.handler.BalanceGetHandler
+      - com.rayli.handler.AccountGetHandler
+  
+  - path: '/v1/transactions/{accountId}'
+    method: 'GET'
+    exec:
+      - default
+      - com.rayli.handler.TransactionGetHandler
       
   - path: '/v1/deposit'
     method: 'POST'
     exec:
       - default
-      - com.rayli.handler.DepositPutHandler
+      - com.rayli.handler.DepositPostHandler
+    
+  - path: '/v1/withdraw'
+    method: 'POST'
+    exec:
+      - default
+      - com.rayli.handler.WithdrawPostHandler

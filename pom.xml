@@ -11,10 +11,12 @@
 	<name>MoneyTransfer</name>
 
 	<properties>
-		<project.main.class>com.networknt.server.Server</project.main.class>
+		<!-- <project.main.class>com.networknt.server.Server</project.main.class> -->
+		<project.main.class>com.rayli.startup.Application</project.main.class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
+		<jarName>${project.artifactId}-${project.version}-jar-with-dependencies.jar</jarName>
 		<version.junit>4.12</version.junit>
 		<version.slf4j>1.7.25</version.slf4j>
 		<version.sqlite>3.30.1</version.sqlite>
@@ -23,77 +25,10 @@
 		<version.light-4j>1.5.30</version.light-4j>
 		<version.maven-surefile-plugin>3.0.0-M4</version.maven-surefile-plugin>
 		<version.exec-maven-plugin>1.4.0</version.exec-maven-plugin>
-		<version.maven-jar-plugin>2.6</version.maven-jar-plugin>
 		<version.maven-javadoc-plugin>2.10.4</version.maven-javadoc-plugin>
 		<version.maven-source-plugin>3.0.1</version.maven-source-plugin>
 		<version.slf4j>1.7.25</version.slf4j>
 	</properties>
-
-	<build>
-		<defaultGoal>install</defaultGoal>
-		<directory>target</directory>
-		<finalName>${project.artifactId}-${project.version}</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>${version.maven-source-plugin}</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${version.maven-javadoc-plugin}</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${version.maven-surefile-plugin}</version>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>${version.exec-maven-plugin}</version>
-				<configuration>
-					<executable>java</executable>
-					<mainClass>${project.main.class}</mainClass>
-					<arguments>
-						<argument>-jar</argument>
-						<argument>target/${project.build.finalName}.jar</argument>
-					</arguments>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>${version.maven-jar-plugin}</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>${project.main.class}</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 	<dependencies>
 		<!-- slf4j -->
@@ -131,7 +66,7 @@
 			<version>${version.sqlite}</version>
 		</dependency>
 
-		<!-- light-rest-4j  required lib-->
+		<!-- light-rest-4j required lib -->
 		<dependency>
 			<groupId>com.networknt</groupId>
 			<artifactId>config</artifactId>
@@ -158,5 +93,107 @@
 			<version>${version.light-4j}</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<directory>target</directory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${version.maven-source-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${version.maven-javadoc-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${version.maven-surefile-plugin}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${version.exec-maven-plugin}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>${project.main.class}</mainClass>
+					<arguments>true</arguments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${version.exec-maven-plugin}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<executable>java</executable>
+					<arguments>
+						<argument>-jar</argument>
+						<argument>target/${jarName}</argument>
+						<argument>true</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>${project.main.class}</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

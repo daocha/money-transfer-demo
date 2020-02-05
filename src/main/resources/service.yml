@@ -1,6 +1,6 @@
 # Singleton service factory configuration/IoC injection
 singletons:
-- com.rayli.service.TransferService:
-  - com.rayli.service.TransferServiceImpl
-- com.rayli.service.BalanceService:
-  - com.rayli.service.BalanceServiceImpl
+- com.rayli.connection.DBConnection:
+  - com.rayli.connection.DBConnectionSQLite
+- com.rayli.service.TransactionService:
+  - com.rayli.service.TransactionServiceImpl
