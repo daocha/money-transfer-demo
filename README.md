@@ -21,8 +21,8 @@ Run
 mvn package exec:exec
 ```
 
+ ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) If this is the first time, please run
 
-If this is the first time, please run
 ```
 mvn package exec:exec -DskipTests
 ```
