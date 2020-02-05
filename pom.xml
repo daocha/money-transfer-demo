@@ -141,23 +141,6 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<mainClass>${project.main.class}</mainClass>
-					<arguments>true</arguments>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>${version.exec-maven-plugin}</version>
-				<executions>
-					<execution>
-						<goals>
 							<goal>exec</goal>
 						</goals>
 					</execution>
@@ -171,7 +154,7 @@
 					</arguments>
 				</configuration>
 			</plugin>
-
+			
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>

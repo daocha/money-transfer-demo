@@ -1,3 +1,3 @@
 # money-transfer-demo
 
-Startup: mvn clean compile exec:java
+`Start Server`: mvn clean package exec:exec
