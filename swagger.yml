@@ -1,0 +1,223 @@
+openapi: 3.0.0
+info:
+  title: Money Transfer Demo
+  description: Simple project for demonstrating money transfer
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/v1
+    description: development server
+paths:
+  /account/{accountId}:
+    get:
+      summary: Account
+      description: Returns specified account details
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+          description: The account ID
+      responses:
+        '200':    # status code
+          description: account details
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Account'
+        '404':
+          description: account not found
+ 
+  /deposit:
+    post:
+      summary: Deposit
+      description: Deposit money to account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+                  example: 1
+                  description: id of deposit account
+                amount:
+                  type: number
+                  example: 1000
+                  description: amount to deposit
+      responses:
+        '200':    # status code
+          description: response
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Response'
+  
+  /withdraw:
+    post:
+      summary: Withdraw
+      description: Withdraw money from account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+                  example: 1
+                  description: id of withdraw account
+                amount:
+                  type: number
+                  example: 1000
+                  description: amount to withdraw
+      responses:
+        '200':    # status code
+          description: response
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Response'
+ 
+  /transfer:
+    post:
+      summary: Transfer
+      description: Transfer money from one account to the other account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                creditAccountId:
+                  type: string
+                  example: 1
+                  description: account id that credits to
+                debitAccountId:
+                  type: string
+                  example: 1
+                  description: account id that debits from
+                currency:
+                  type: string
+                  example: "USD"
+                  description: amount currency
+                amount:
+                  type: number
+                  example: 1000
+                  description: amount to transfer
+      responses:
+        '200':    # status code
+          description: response
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Response'              
+  
+  /transaction/{accountId}:
+    get:
+      summary: Transaction
+      description: Returns recent 100 transaction records by specified account
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+          description: The account ID that transactions belonging to
+      responses:
+        '200':    # status code
+          description: list of transactions
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+      
+components:
+  schemas:
+    Account:
+      type: object
+      description: bank account
+      properties: 
+        id:
+          type: string
+          example: 1
+          description: Account unique identifier
+        owner:
+          $ref: '#/components/schemas/User'
+        currency:
+          type: string
+          example: USD
+          description: account base currency
+        balance:
+          type: number
+          example: 100500
+          description: account balance
+        version:
+          type: integer
+          example: 1
+          description: record update version
+    User:
+      type: object
+      description: User object
+      properties:
+        id: 
+          type: string
+          example: 1
+          description: User unique identifier
+        username:
+          type: string
+          example: rayli
+          description: username
+    Transaction:
+      type: object
+      description: transaction record
+      properties:
+        id:
+          type: string
+          example: 1001
+          description: unique transaction id
+        type:
+          type: string
+          enum: [DEPOSIT, WITHDRAW, TRANSFER]
+        ownerAccountId:
+          type: string
+          example: 1
+          description: Account id of the owner
+        creditAccountId:
+          type: string
+          example: 1
+          description: Account id of the credit party
+        debitAccountId:
+          type: string
+          example: 1
+          description: Account id of the debit party
+        amount:
+          type: number
+          example: 500
+          description: transaction amount
+        currency:
+          type: string
+          example: USD
+          description: account base currency
+        time:
+          type: string
+          example: 2020-02-10 01:55:00.111 +08:00
+          description: transaction timestamp
+        balance:
+          type: number
+          example: 100500
+          description: the balance of the owner after this transaction is settled
+    Response:
+      type: object
+      description: custom response object
+      properties:
+        success:
+          type: boolean
+          example: true
+          description: success | failure
+        error:
+          type: string
+          description: error message
