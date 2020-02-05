@@ -45,7 +45,7 @@ paths:
                 amount:
                   type: number
                   example: 1000
-                  description: amount to deposit
+                  description: amount to deposit (only positive valus are accepted)
       responses:
         '200':    # status code
           description: response
@@ -71,7 +71,7 @@ paths:
                 amount:
                   type: number
                   example: 1000
-                  description: amount to withdraw
+                  description: amount to withdraw (only positive valus are accepted)
       responses:
         '200':    # status code
           description: response
@@ -105,7 +105,7 @@ paths:
                 amount:
                   type: number
                   example: 1000
-                  description: amount to transfer
+                  description: amount to transfer (only positive valus are accepted)
       responses:
         '200':    # status code
           description: response
