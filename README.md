@@ -29,6 +29,11 @@ mvn package exec:exec -DskipTests
 
 So the database bank.db is initialized.
 
+Alternatively, run with the pre compiled jar
+```
+java -jar moneytransfer-0.0.1-alpha.jar true
+```
+
 
 ## Test:
 Run
