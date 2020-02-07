@@ -40,11 +40,11 @@ paths:
               properties:
                 accountId:
                   type: string
-                  example: 1
+                  example: "1"
                   description: id of deposit account
                 amount:
                   type: number
-                  example: 1000
+                  example: 1000.0
                   description: amount to deposit (only positive valus are accepted)
       responses:
         '200':    # status code
@@ -66,11 +66,11 @@ paths:
               properties:
                 accountId:
                   type: string
-                  example: 1
+                  example: "1"
                   description: id of withdraw account
                 amount:
                   type: number
-                  example: 1000
+                  example: 1000.0
                   description: amount to withdraw (only positive valus are accepted)
       responses:
         '200':    # status code
@@ -92,11 +92,11 @@ paths:
               properties:
                 creditAccountId:
                   type: string
-                  example: 1
+                  example: "1"
                   description: account id that credits to
                 debitAccountId:
                   type: string
-                  example: 1
+                  example: "1"
                   description: account id that debits from
                 currency:
                   type: string
@@ -104,7 +104,7 @@ paths:
                   description: amount currency
                 amount:
                   type: number
-                  example: 1000
+                  example: 1000.0
                   description: amount to transfer (only positive valus are accepted)
       responses:
         '200':    # status code
@@ -143,13 +143,13 @@ components:
       properties: 
         id:
           type: string
-          example: 1
+          example: "1"
           description: Account unique identifier
         owner:
           $ref: '#/components/schemas/User'
         currency:
           type: string
-          example: USD
+          example: "USD"
           description: account base currency
         balance:
           type: number
@@ -165,11 +165,11 @@ components:
       properties:
         id: 
           type: string
-          example: 1
+          example: "1"
           description: User unique identifier
         username:
           type: string
-          example: rayli
+          example: "rayli"
           description: username
     Transaction:
       type: object
@@ -177,38 +177,38 @@ components:
       properties:
         id:
           type: string
-          example: 1001
+          example: "1001"
           description: unique transaction id
         type:
           type: string
           enum: [DEPOSIT, WITHDRAW, TRANSFER]
         ownerAccountId:
           type: string
-          example: 1
+          example: "1"
           description: Account id of the owner
         creditAccountId:
           type: string
-          example: 1
+          example: "2"
           description: Account id of the credit party
         debitAccountId:
           type: string
-          example: 1
+          example: "1"
           description: Account id of the debit party
         amount:
           type: number
-          example: 500
+          example: 500.0
           description: transaction amount
         currency:
           type: string
-          example: USD
+          example: "USD"
           description: account base currency
         time:
           type: string
-          example: 2020-02-10 01:55:00.111 +08:00
+          example: "2020-02-10 01:55:00.111 +08:00"
           description: transaction timestamp
         balance:
           type: number
-          example: 100500
+          example: 100500.0
           description: the balance of the owner after this transaction is settled
     Response:
       type: object
