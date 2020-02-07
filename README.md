@@ -23,15 +23,13 @@ Run
 mvn package exec:exec
 ```
 
- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) If this is the first time, please run
+ ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) If this is the first time, please run without tests (tests depend on the initialized database)
 
 ```
 mvn package exec:exec -DskipTests
 ```
 
-So the database bank.db is initialized.
-
-Alternatively, run with the pre compiled jar
+Alternatively, run with the pre-compiled jar (Compiled by Java 8)
 ```
 java -jar moneytransfer-0.0.1-alpha.jar true
 ```
@@ -54,10 +52,12 @@ Suggested testing tool: Postman or cUrl
 
 Suggested steps for testing:
 
-1) deposit some money to both accounts
+base url : http://localhost:8080/v1
 
-2) [optional] withdraw money
+1) call [POST] /deposit, to deposit some money to both accounts
 
-3) transfer money between the accounts
+2) (OPTIONAL) call [POST] /withdraw, withdraw money
 
-4) call transaction api to review the transactions.
+3) call [POST] /transfer,transfer money between the accounts
+
+4) call [GET] /transaction/{accountId} to review recent transactions.
