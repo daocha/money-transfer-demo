@@ -1,6 +1,8 @@
 package com.rayli.exception;
 
 /**
+ * General Exception for API handlers
+ * 
  * @author Ray LI
  * @date 5 Feb 2020
  * @company ray@dcha.xyz

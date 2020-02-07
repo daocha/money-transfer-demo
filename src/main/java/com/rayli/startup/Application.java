@@ -11,7 +11,7 @@ import com.networknt.service.SingletonServiceFactory;
 import com.rayli.connection.DBConnection;
 
 /**
- * Initialize database
+ * Server Endpoint, main class of the application
  * 
  * @author Ray LI
  * @date 4 Feb 2020

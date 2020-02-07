@@ -53,12 +53,12 @@ public class DBConnectionSQLite implements DBConnection {
 	}
 
 	@Override
-	public void setJUnitTest() {
+	public void switchJUnitTestMode() {
 		this.junitTest = true;
 	}
 
 	@Override
-	public boolean isJUnitTest() {
+	public boolean isJUnitTestMode() {
 		return this.junitTest;
 	}
 

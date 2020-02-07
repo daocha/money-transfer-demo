@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
- * Account Table
+ * Account model
  * 
  * @author Ray LI
  * @date 4 Feb 2020

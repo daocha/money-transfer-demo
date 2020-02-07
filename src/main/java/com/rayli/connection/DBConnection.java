@@ -22,8 +22,15 @@ public interface DBConnection {
 	 */
 	void clearSharedConnection() throws SQLException;
 
-	void setJUnitTest();
+	/**
+	 * a toggle designed for JUnit test. In order to keep one single database
+	 * connection in order so it is easier to mock data.
+	 */
+	void switchJUnitTestMode();
 
-	boolean isJUnitTest();
+	/**
+	 * Check if this is JUnit test mode
+	 */
+	boolean isJUnitTestMode();
 
 }

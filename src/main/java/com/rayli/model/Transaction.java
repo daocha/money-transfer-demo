@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
- * Transaction Table
+ * Transaction model
  * 
  * @author Ray LI
  * @date 4 Feb 2020

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import com.networknt.service.SingletonServiceFactory;
 
 /**
+ * Utility for connection related
+ * 
  * @author Ray LI
  * @date 5 Feb 2020
  * @company ray@dcha.xyz
@@ -22,7 +24,7 @@ public class UtilsConnection {
 
 		DBConnection connection = SingletonServiceFactory.getBean(DBConnection.class);
 
-		if (!connection.isJUnitTest()) {
+		if (!connection.isJUnitTestMode()) {
 			conn.commit();
 		}
 
@@ -35,9 +37,14 @@ public class UtilsConnection {
 		conn.rollback();
 	}
 
+	/**
+	 * Close database connection. if JUnitTest mode, need to manually close
+	 * connection by calling {@link DBConnection#clearSharedConnection}
+	 */
 	public static void close(Connection conn) throws SQLException {
 		DBConnection connection = SingletonServiceFactory.getBean(DBConnection.class);
-		if (!connection.isJUnitTest() && conn != null) {
+
+		if (!connection.isJUnitTestMode() && conn != null) {
 			conn.close();
 		}
 	}

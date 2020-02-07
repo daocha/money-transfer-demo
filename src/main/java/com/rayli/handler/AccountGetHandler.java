@@ -10,6 +10,8 @@ import io.undertow.server.HttpServerExchange;
 import io.undertow.util.HttpString;
 
 /**
+ * API GET /accounts
+ * 
  * @author Ray LI
  * @date 4 Feb 2020
  * @company ray@dcha.xyz

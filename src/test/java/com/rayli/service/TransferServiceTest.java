@@ -42,7 +42,7 @@ public class TransferServiceTest {
 		mockAccountB.setCurrency("USD");
 		mockAccountB.setBalance(BigDecimal.ZERO);
 
-		connection.setJUnitTest();
+		connection.switchJUnitTestMode();
 
 		// initialize shared connection
 		try {
@@ -66,6 +66,9 @@ public class TransferServiceTest {
 
 	}
 
+	/**
+	 * Test backend logic for api /account
+	 */
 	@Test
 	public void getGetAccount() {
 
@@ -79,6 +82,9 @@ public class TransferServiceTest {
 
 	}
 
+	/**
+	 * Test backend logic for api /deposit & /withdraw
+	 */
 	@Test
 	public void testDepositWithdraw() {
 		// deposit $1500, balance $1500
@@ -124,6 +130,9 @@ public class TransferServiceTest {
 		}
 	}
 
+	/**
+	 * Test backend logic for api /transfer
+	 */
 	@Test
 	public void testTransfer() throws InterruptedException {
 

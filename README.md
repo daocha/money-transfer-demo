@@ -6,8 +6,10 @@
 - light-rest-4j
 - sqlite-jdbc
 
+
 ## Datastore
 - SQLite
+
 
 ## API Documentation
 https://daocha.github.io/money-transfer-demo/
@@ -35,7 +37,7 @@ java -jar moneytransfer-0.0.1-alpha.jar true
 ```
 
 
-## Test:
+## Run Testcase:
 Run
 ```
 mvn test
@@ -47,6 +49,8 @@ mvn test
 When starting up server, it initializes database with default 2 users(id: 1,2) and 2 accounts(id: 1,2).
 
 The init accounts don't have balance.
+
+Suggested testing tool: Postman or cUrl
 
 Suggested steps for testing:
 
